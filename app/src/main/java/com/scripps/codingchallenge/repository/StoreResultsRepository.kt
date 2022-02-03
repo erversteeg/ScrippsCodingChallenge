@@ -20,8 +20,14 @@ class StoreResultsRepository {
 
     private val searchResultsService = retrofit.create(ITunesStoreSearchService::class.java)
 
+    private var cRequest: Call<JsonElement>? = null
+
     fun getStoreResults(term: String) {
-        searchResultsService.getResults(term).enqueue(object: Callback<JsonElement> {
+        cRequest?.cancel()
+
+        cRequest = searchResultsService.getResults(term)
+
+        cRequest?.enqueue(object: Callback<JsonElement> {
             override fun onResponse(call: Call<JsonElement>, response: Response<JsonElement>) {
                 if (!response.isSuccessful) {
                     storeResultsData.value = emptyList()
@@ -80,6 +86,8 @@ class StoreResultsRepository {
                         country, currency, primaryGenreName, isStreamable)
 
                     resultObjects.add(storeResult)
+
+                    cRequest = null
                 }
 
                 storeResultsData.value = resultObjects
