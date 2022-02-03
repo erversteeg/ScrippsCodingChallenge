@@ -48,6 +48,12 @@ class StoreResultsFragment : Fragment() {
         })
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        (activity as MainActivity).setCollapsingToolbarTitle("iTunes Store Search")
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -34,4 +34,8 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
+
+    fun setCollapsingToolbarTitle(title: String?) {
+        binding.toolbarLayout.title = title ?: " "
+    }
 }

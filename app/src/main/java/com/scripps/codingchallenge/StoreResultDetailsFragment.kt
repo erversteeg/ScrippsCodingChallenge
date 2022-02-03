@@ -47,6 +47,12 @@ class StoreResultDetailsFragment : Fragment() {
         binding.textViewPrice.text = String.format("$%.2f", storeResult.trackPrice)
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        (activity as MainActivity).setCollapsingToolbarTitle(null)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
