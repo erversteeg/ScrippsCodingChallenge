@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.scripps.codingchallenge.adapter.StoreResultsRecyclerViewAdapter
@@ -31,7 +32,7 @@ class StoreResultsFragment : Fragment() {
         with(binding.recyclerViewSearchResults) {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-            adapter = StoreResultsRecyclerViewAdapter(this@StoreResultsFragment)
+            adapter = StoreResultsRecyclerViewAdapter(requireActivity())
         }
 
         binding.recyclerViewSearchResults.addOnScrollListener(object: RecyclerView.OnScrollListener() {

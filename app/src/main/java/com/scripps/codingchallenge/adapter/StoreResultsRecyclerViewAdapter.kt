@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -16,9 +16,9 @@ import com.scripps.codingchallenge.R
 import com.scripps.codingchallenge.StoreResultsViewModel
 import com.scripps.codingchallenge.model.StoreResult
 
-class StoreResultsRecyclerViewAdapter(private val fragment: Fragment): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class StoreResultsRecyclerViewAdapter(private val activity: FragmentActivity): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val viewModel: StoreResultsViewModel = ViewModelProvider(fragment).get(StoreResultsViewModel::class.java)
+    private val viewModel: StoreResultsViewModel = ViewModelProvider(activity).get(StoreResultsViewModel::class.java)
 
     var storeResults = emptyList<StoreResult>()
 
@@ -26,8 +26,7 @@ class StoreResultsRecyclerViewAdapter(private val fragment: Fragment): RecyclerV
     private val viewTypeStoreResult = 1
 
     init {
-
-        viewModel.storeResults.observe(fragment.viewLifecycleOwner) { storeResults ->
+        viewModel.storeResults.observe(activity) { storeResults ->
             this.storeResults = storeResults
 
             // TODO: Add update, change, and other notify methods
@@ -51,7 +50,7 @@ class StoreResultsRecyclerViewAdapter(private val fragment: Fragment): RecyclerV
 
             val storeResult = storeResults[position - 1]
 
-            Glide.with(fragment.requireContext()).load(storeResult.artworkUrl100 ?: "")
+            Glide.with(activity).load(storeResult.artworkUrl100 ?: "")
                 .into(storeResultViewHolder.artworkImageView)
 
             storeResultViewHolder.trackName.text = storeResult.trackName ?: ""
