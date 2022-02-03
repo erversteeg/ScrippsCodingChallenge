@@ -7,6 +7,6 @@ import retrofit2.http.Query
 
 interface ITunesStoreSearchService {
 
-    @GET("/search?country=US")
+    @GET("/search?country=US&limit=10")
     fun getResults(@Query(value = "term", encoded = true) term: String): Call<JsonElement>
 }
