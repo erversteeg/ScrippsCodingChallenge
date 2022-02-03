@@ -1,5 +1,6 @@
 package com.scripps.codingchallenge.adapter
 
+import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.scripps.codingchallenge.R
@@ -56,6 +58,15 @@ class StoreResultsRecyclerViewAdapter(private val activity: FragmentActivity): R
             storeResultViewHolder.trackName.text = storeResult.trackName ?: ""
             storeResultViewHolder.collectionName.text = storeResult.collectionName ?: ""
             storeResultViewHolder.artistName.text = storeResult.artistName ?: ""
+
+            storeResultViewHolder.itemView.setOnClickListener {
+                val navHost = activity.supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment
+                val navController = navHost.navController
+                navController.navigate(R.id.action_details_fragment, Bundle().apply {
+                    val vm = viewModel
+                    putInt("store_result_id", storeResult.uid)
+                })
+            }
         }
         else {
             val searchBarViewHolder = holder as SearchBarViewHolder

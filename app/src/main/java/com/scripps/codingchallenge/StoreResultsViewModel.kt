@@ -15,4 +15,16 @@ class StoreResultsViewModel(application: Application): AndroidViewModel(applicat
     fun getStoreResults(term: String) {
         repository.getStoreResults(term)
     }
+
+    fun getStoreResult(uid: Int): StoreResult? {
+        storeResults.value?.apply {
+            for (storeResult in this) {
+                if (storeResult.uid == uid) {
+                    return storeResult
+                }
+            }
+        }
+
+        return null
+    }
 }
