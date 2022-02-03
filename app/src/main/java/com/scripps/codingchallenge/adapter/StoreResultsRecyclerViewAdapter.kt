@@ -22,6 +22,7 @@ class StoreResultsRecyclerViewAdapter(private val fragment: Fragment): RecyclerV
 
     var storeResults = emptyList<StoreResult>()
 
+    private val viewTypeSearchBar = 0
     private val viewTypeStoreResult = 1
 
     init {
@@ -35,29 +36,64 @@ class StoreResultsRecyclerViewAdapter(private val fragment: Fragment): RecyclerV
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.adapter_store_result_cell, parent, false)
-        return StoreResultViewHolder(view)
+        return if (viewType == viewTypeSearchBar) {
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.adapter_search_bar_cell, parent, false)
+            SearchBarViewHolder(view)
+        } else {
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.adapter_store_result_cell, parent, false)
+            StoreResultViewHolder(view)
+        }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val storeResultViewHolder = holder as StoreResultViewHolder
+        if (position > 0) {
+            val storeResultViewHolder = holder as StoreResultViewHolder
 
-        val storeResult = storeResults[position]
+            val storeResult = storeResults[position - 1]
 
-        Glide.with(fragment.requireContext()).load(storeResult.artworkUrl100 ?: "")
-            .into(storeResultViewHolder.artworkImageView)
+            Glide.with(fragment.requireContext()).load(storeResult.artworkUrl100 ?: "")
+                .into(storeResultViewHolder.artworkImageView)
 
-        storeResultViewHolder.trackName.text = storeResult.trackName ?: ""
-        storeResultViewHolder.collectionName.text = storeResult.collectionName ?: ""
-        storeResultViewHolder.artistName.text = storeResult.artistName ?: ""
+            storeResultViewHolder.trackName.text = storeResult.trackName ?: ""
+            storeResultViewHolder.collectionName.text = storeResult.collectionName ?: ""
+            storeResultViewHolder.artistName.text = storeResult.artistName ?: ""
+        }
+        else {
+            val searchBarViewHolder = holder as SearchBarViewHolder
+
+            searchBarViewHolder.searchInputEditText.addTextChangedListener(object: TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) { }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    s?.apply {
+                        viewModel.getStoreResults(s.toString())
+                    }
+                }
+
+                override fun afterTextChanged(s: Editable?) { }
+            })
+        }
     }
 
     override fun getItemCount(): Int {
-        return storeResults.size
+        return storeResults.size + 1
     }
 
     override fun getItemViewType(position: Int): Int {
-        return viewTypeStoreResult
+        return if (position == 0) {
+            viewTypeSearchBar
+        } else {
+            viewTypeStoreResult
+        }
+    }
+
+    class SearchBarViewHolder(view: View): RecyclerView.ViewHolder(view) {
+        val searchInputEditText: EditText = view.findViewById(R.id.edit_text_search_input)
     }
 
     class StoreResultViewHolder(view: View): RecyclerView.ViewHolder(view) {

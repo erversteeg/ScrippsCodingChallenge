@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.scripps.codingchallenge.adapter.StoreResultsRecyclerViewAdapter
@@ -32,6 +33,18 @@ class FirstFragment : Fragment() {
 
             adapter = StoreResultsRecyclerViewAdapter(this@FirstFragment)
         }
+
+        binding.recyclerViewSearchResults.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                if (binding.recyclerViewSearchResults.computeVerticalScrollOffset() > 0) {
+                    // https://stackoverflow.com/questions/41793069/hide-keyboard-when-edit-text-in-recycler-view-is-scrolled-off-screen
+                    val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(requireView().windowToken, 0)
+                }
+            }
+        })
     }
 
     override fun onDestroyView() {
