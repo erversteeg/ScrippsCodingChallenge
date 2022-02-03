@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.scripps.codingchallenge.SecondFragment"
+        android:name="com.scripps.codingchallenge.StoreResultDetailsFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second"/>
+        tools:layout="@layout/fragment_store_result_details"/>
 </navigation>
