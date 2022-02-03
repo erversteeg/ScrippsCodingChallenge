@@ -10,18 +10,18 @@ import android.view.inputmethod.InputMethodManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.scripps.codingchallenge.adapter.StoreResultsRecyclerViewAdapter
-import com.scripps.codingchallenge.databinding.FragmentFirstBinding
+import com.scripps.codingchallenge.databinding.FragmentStoreResultsBinding
 
-class FirstFragment : Fragment() {
+class StoreResultsFragment : Fragment() {
 
-    private var _binding: FragmentFirstBinding? = null
+    private var _binding: FragmentStoreResultsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        _binding = FragmentStoreResultsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -31,7 +31,7 @@ class FirstFragment : Fragment() {
         with(binding.recyclerViewSearchResults) {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-            adapter = StoreResultsRecyclerViewAdapter(this@FirstFragment)
+            adapter = StoreResultsRecyclerViewAdapter(this@StoreResultsFragment)
         }
 
         binding.recyclerViewSearchResults.addOnScrollListener(object: RecyclerView.OnScrollListener() {

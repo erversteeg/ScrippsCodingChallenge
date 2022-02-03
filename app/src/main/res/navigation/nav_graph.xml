@@ -7,8 +7,8 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.scripps.codingchallenge.FirstFragment"
-        tools:layout="@layout/fragment_first">
+        android:name="com.scripps.codingchallenge.StoreResultsFragment"
+        tools:layout="@layout/fragment_store_results">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
