@@ -1,4 +1,4 @@
-package com.scripps.codingchallenge
+package com.scripps.codingchallenge.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -11,7 +11,7 @@ class StoreResultsViewModel(application: Application): AndroidViewModel(applicat
     private val repository by lazy { StoreResultsRepository() }
 
     var term: String? = null
-    val storeResults: LiveData<List<StoreResult>> = repository.storeResultsData
+    var storeResults: LiveData<List<StoreResult>> = repository.storeResultsData
 
     val errorData: LiveData<Throwable?> = repository.errorData
 
