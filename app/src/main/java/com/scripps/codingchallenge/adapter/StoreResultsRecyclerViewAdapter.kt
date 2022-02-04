@@ -26,15 +26,33 @@ class StoreResultsRecyclerViewAdapter(private val activity: FragmentActivity): R
 
     private val viewTypeSearchBar = 0
     private val viewTypeStoreResult = 1
+    private val viewTypeError = 2
 
     private var restoreTerm = true
 
+    enum class NetworkState {
+        SUCCESS,
+        ERROR
+    }
+
+    private var networkState = NetworkState.SUCCESS
+
     init {
         viewModel.storeResults.observe(activity) { storeResults ->
+            networkState = NetworkState.SUCCESS
+
             this.storeResults = storeResults
 
             // TODO: Add update, change, and other notify methods
             notifyDataSetChanged()
+        }
+
+        viewModel.errorData.observe(activity) {
+            if (it != null) {
+                networkState = NetworkState.ERROR
+
+                notifyDataSetChanged()
+            }
         }
     }
 
@@ -42,26 +60,27 @@ class StoreResultsRecyclerViewAdapter(private val activity: FragmentActivity): R
         return if (viewType == viewTypeSearchBar) {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.adapter_search_bar_cell, parent, false)
             SearchBarViewHolder(view)
-        } else {
+        } else if (viewType == viewTypeStoreResult) {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.adapter_store_result_cell, parent, false)
             StoreResultViewHolder(view)
+        } else {
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.adapter_network_error_cell, parent, false)
+            NetworkErrorViewHolder(view)
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (position > 0) {
-            val storeResultViewHolder = holder as StoreResultViewHolder
-
+        if (holder is StoreResultViewHolder) {
             val storeResult = storeResults[position - 1]
 
             Glide.with(activity).load(storeResult.artworkUrl100 ?: "")
-                .into(storeResultViewHolder.artworkImageView)
+                .into(holder.artworkImageView)
 
-            storeResultViewHolder.trackName.text = storeResult.trackName ?: ""
-            storeResultViewHolder.collectionName.text = storeResult.collectionName ?: ""
-            storeResultViewHolder.artistName.text = storeResult.artistName ?: ""
+            holder.trackName.text = storeResult.trackName ?: ""
+            holder.collectionName.text = storeResult.collectionName ?: ""
+            holder.artistName.text = storeResult.artistName ?: ""
 
-            storeResultViewHolder.itemView.setOnClickListener {
+            holder.itemView.setOnClickListener {
                 val navHost = activity.supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment
                 val navController = navHost.navController
                 navController.navigate(R.id.action_details_fragment, Bundle().apply {
@@ -69,15 +88,13 @@ class StoreResultsRecyclerViewAdapter(private val activity: FragmentActivity): R
                 })
             }
         }
-        else {
-            val searchBarViewHolder = holder as SearchBarViewHolder
-
+        else if (holder is SearchBarViewHolder) {
             if (restoreTerm) {
-                searchBarViewHolder.searchInputEditText.setText(viewModel.term)
+                holder.searchInputEditText.setText(viewModel.term)
                 restoreTerm = false
             }
 
-            searchBarViewHolder.searchInputEditText.addTextChangedListener(object: TextWatcher {
+            holder.searchInputEditText.addTextChangedListener(object: TextWatcher {
                 override fun beforeTextChanged(
                     s: CharSequence?,
                     start: Int,
@@ -97,14 +114,25 @@ class StoreResultsRecyclerViewAdapter(private val activity: FragmentActivity): R
     }
 
     override fun getItemCount(): Int {
-        return storeResults.size + 1
+        return if (networkState == NetworkState.SUCCESS) {
+            storeResults.size + 1
+        }
+        // search bar + network error
+        else {
+            2
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
         return if (position == 0) {
             viewTypeSearchBar
         } else {
-            viewTypeStoreResult
+            if (networkState == NetworkState.SUCCESS) {
+                viewTypeStoreResult
+            }
+            else {
+                viewTypeError
+            }
         }
     }
 
@@ -119,4 +147,6 @@ class StoreResultsRecyclerViewAdapter(private val activity: FragmentActivity): R
         val trackName: TextView = view.findViewById(R.id.text_view_track_name)
         val artistName: TextView = view.findViewById(R.id.text_view_artist_name)
     }
+
+    class NetworkErrorViewHolder(view: View): RecyclerView.ViewHolder(view)
 }

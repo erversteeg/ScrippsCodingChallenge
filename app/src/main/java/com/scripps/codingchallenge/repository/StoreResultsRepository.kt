@@ -13,6 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class StoreResultsRepository {
 
     val storeResultsData = MutableLiveData<List<StoreResult>>().apply { value = emptyList() }
+    val errorData: MutableLiveData<Throwable?> = MutableLiveData()
 
     private val apiBaseUrl = "https://itunes.apple.com/"
     private val retrofit = Retrofit.Builder().baseUrl(apiBaseUrl)
@@ -29,14 +30,21 @@ class StoreResultsRepository {
 
         cRequest?.enqueue(object: Callback<JsonElement> {
             override fun onResponse(call: Call<JsonElement>, response: Response<JsonElement>) {
+                var error = false
+
                 if (!response.isSuccessful) {
                     storeResultsData.value = emptyList()
+                    error = true
+                }
+                else if (response.body() == null) error = true
+                else if (!response.body()!!.isJsonObject) error = true
+                else if (!response.body()!!.asJsonObject.has("results")) error = true
+                else if (!response.body()!!.asJsonObject.get("results").isJsonArray) error = true
+
+                if (error) {
+                    errorData.value = Throwable("Network error")
                     return
                 }
-                else if (response.body() == null) return
-                else if (!response.body()!!.isJsonObject) return
-                else if (!response.body()!!.asJsonObject.has("results")) return
-                else if (!response.body()!!.asJsonObject.get("results").isJsonArray) return
 
                 val results = response.body()!!.asJsonObject.get("results").asJsonArray
 
@@ -91,10 +99,14 @@ class StoreResultsRepository {
                 }
 
                 storeResultsData.value = resultObjects
+
+                errorData.value = null
             }
 
             override fun onFailure(call: Call<JsonElement>, t: Throwable) {
-
+                if (!call.isCanceled) {
+                    errorData.value = t
+                }
             }
         })
     }

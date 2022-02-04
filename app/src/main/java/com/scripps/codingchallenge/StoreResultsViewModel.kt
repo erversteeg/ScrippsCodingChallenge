@@ -13,6 +13,8 @@ class StoreResultsViewModel(application: Application): AndroidViewModel(applicat
     var term: String? = null
     val storeResults: LiveData<List<StoreResult>> = repository.storeResultsData
 
+    val errorData: LiveData<Throwable?> = repository.errorData
+
     fun getStoreResults(term: String) {
         repository.getStoreResults(term)
         this.term = term
