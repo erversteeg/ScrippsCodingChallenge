@@ -27,6 +27,8 @@ class StoreResultsRecyclerViewAdapter(private val activity: FragmentActivity): R
     private val viewTypeSearchBar = 0
     private val viewTypeStoreResult = 1
 
+    private var restoreTerm = true
+
     init {
         viewModel.storeResults.observe(activity) { storeResults ->
             this.storeResults = storeResults
@@ -69,6 +71,11 @@ class StoreResultsRecyclerViewAdapter(private val activity: FragmentActivity): R
         }
         else {
             val searchBarViewHolder = holder as SearchBarViewHolder
+
+            if (restoreTerm) {
+                searchBarViewHolder.searchInputEditText.setText(viewModel.term)
+                restoreTerm = false
+            }
 
             searchBarViewHolder.searchInputEditText.addTextChangedListener(object: TextWatcher {
                 override fun beforeTextChanged(

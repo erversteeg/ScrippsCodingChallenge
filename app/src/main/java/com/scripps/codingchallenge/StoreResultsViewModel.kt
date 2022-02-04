@@ -10,10 +10,12 @@ class StoreResultsViewModel(application: Application): AndroidViewModel(applicat
 
     private val repository by lazy { StoreResultsRepository() }
 
+    var term: String? = null
     val storeResults: LiveData<List<StoreResult>> = repository.storeResultsData
 
     fun getStoreResults(term: String) {
         repository.getStoreResults(term)
+        this.term = term
     }
 
     fun getStoreResult(uid: Int): StoreResult? {
