@@ -1,12 +1,25 @@
 <resources>
     <string name="app_name">iTunes Store Search</string>
     <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="store_results_fragment">iTunes Store Search</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="store_results_fragment_title">iTunes Store Search</string>
+    <string name="store_result_kind_label">Kind</string>
+    <string name="store_result_collection_price_label">Collection Price</string>
+    <string name="store_result_release_date_label">Release Date</string>
+    <string name="store_result_disc_number_label">Disc Number</string>
+    <string name="store_result_track_count_label">Track Count</string>
+    <string name="store_result_track_number_label">Track Number</string>
+    <string name="store_result_track_time_label">Track Time</string>
+    <string name="store_result_country_label">Country</string>
+    <string name="store_result_currency_label">Currency</string>
+    <string name="store_result_genre_label">Genre</string>
+    <string name="store_result_track_name_label">Track Name</string>
+    <string name="store_result_collection_name_label">Collection Name</string>
+    <string name="store_result_artist_name_label">Artist Name</string>
+    <string name="store_result_kind_movie">Movie</string>
+    <string name="free">$00.00</string>
+    <string name="search_store_input_hint">Search Store</string>
+    <string name="price_format">$%.2f</string>
+    <string name="input_date_format">yyyy-MM-dd\'T\'HH:mm:ss\'Z\'</string>
+    <string name="display_date_format">MM/dd/yyyy</string>
+    <string name="track_time_format">%dm%ds</string>
 </resources>

@@ -63,7 +63,6 @@ class StoreResultsRecyclerViewAdapter(private val activity: FragmentActivity): R
                 val navHost = activity.supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment
                 val navController = navHost.navController
                 navController.navigate(R.id.action_details_fragment, Bundle().apply {
-                    val vm = viewModel
                     putInt("store_result_id", storeResult.uid)
                 })
             }

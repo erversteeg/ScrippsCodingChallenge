@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.scripps.codingchallenge.adapter.StoreResultsRecyclerViewAdapter
@@ -51,7 +50,7 @@ class StoreResultsFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        (activity as MainActivity).setCollapsingToolbarTitle("iTunes Store Search")
+        (activity as MainActivity).setCollapsingToolbarTitle(getString(R.string.store_results_fragment_title))
     }
 
     override fun onDestroyView() {

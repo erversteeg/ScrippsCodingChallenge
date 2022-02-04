@@ -13,7 +13,6 @@ import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-
 class StoreResultDetailsFragment : Fragment() {
 
     private var _binding: FragmentStoreResultDetailsBinding? = null
@@ -61,7 +60,7 @@ class StoreResultDetailsFragment : Fragment() {
         binding.textViewArtistName.text = storeResult.artistName
 
         // track price
-        binding.textViewPrice.text = String.format("$%.2f", storeResult.trackPrice)
+        binding.textViewPrice.text = getString(R.string.price_format, storeResult.trackPrice)
     }
 
     private fun showDetailsSection(storeResult: StoreResult) {
@@ -74,12 +73,12 @@ class StoreResultDetailsFragment : Fragment() {
 
         // true because the result can be null
         if (storeResult.kind?.contains("movie") == true) {
-            binding.textViewKind.text = "Movie"
+            binding.textViewKind.text = getString(R.string.store_result_kind_movie)
         }
 
         // collection price
         if (storeResult.collectionPrice != storeResult.trackPrice) {
-            binding.textViewCollectionPrice.text = String.format("$%.2f", storeResult.collectionPrice)
+            binding.textViewCollectionPrice.text = getString(R.string.price_format, storeResult.collectionPrice)
         }
         else {
             binding.textViewCollectionPriceLabel.visibility = View.GONE
@@ -88,10 +87,10 @@ class StoreResultDetailsFragment : Fragment() {
 
         // release date
         storeResult.releaseDate?.apply {
-            val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US)
+            val inputFormat = SimpleDateFormat(getString(R.string.input_date_format), Locale.US)
             val date = inputFormat.parse(this)!!
 
-            val displayFormat = SimpleDateFormat("MM/dd/yyyy", Locale.US)
+            val displayFormat = SimpleDateFormat(getString(R.string.display_date_format), Locale.US)
             binding.textViewReleaseDate.text = displayFormat.format(date)
         }
 
@@ -127,7 +126,8 @@ class StoreResultDetailsFragment : Fragment() {
             val totalSeconds = this / 1000
             val minutes = totalSeconds / 60
             val seconds = totalSeconds % 60
-            binding.textViewTrackTime.text = "${minutes}m${seconds}s"
+
+            binding.textViewTrackTime.text = getString(R.string.track_time_format, minutes, seconds)
         }
 
         if (storeResult.trackTimeMillis == null) {

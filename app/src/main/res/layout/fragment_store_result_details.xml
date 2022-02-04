@@ -52,7 +52,7 @@
                         app:autoSizeMaxTextSize="20sp"
                         app:autoSizeStepGranularity="1sp"
                         android:lines="2"
-                        android:text="Track Name" />
+                        android:text="@string/store_result_track_name_label" />
 
                     <TextView
                         android:id="@+id/text_view_collection_name"
@@ -64,7 +64,7 @@
                         app:autoSizeMaxTextSize="16sp"
                         app:autoSizeStepGranularity="1sp"
                         android:lines="1"
-                        android:text="Collection Name" />
+                        android:text="@string/store_result_collection_name_label" />
 
                     <TextView
                         android:id="@+id/text_view_artist_name"
@@ -76,7 +76,7 @@
                         app:autoSizeMaxTextSize="16sp"
                         app:autoSizeStepGranularity="1sp"
                         android:lines="1"
-                        android:text="Artist Name" />
+                        android:text="@string/store_result_artist_name_label" />
 
                     <TextView
                         android:id="@+id/text_view_price"
@@ -86,7 +86,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_gravity="end"
-                        android:text="$00.00" />
+                        android:text="@string/free" />
 
                 </LinearLayout>
 
@@ -123,7 +123,7 @@
                                 android:textSize="12sp"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
-                                android:text="Kind"
+                                android:text="@string/store_result_kind_label"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -134,7 +134,7 @@
                                 android:textSize="12sp"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
-                                android:text="Collection Price"
+                                android:text="@string/store_result_collection_price_label"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -144,7 +144,7 @@
                                 android:textSize="12sp"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
-                                android:text="Release Date"
+                                android:text="@string/store_result_release_date_label"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -155,7 +155,7 @@
                                 android:textSize="12sp"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
-                                android:text="Disc Number"
+                                android:text="@string/store_result_disc_number_label"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -166,7 +166,7 @@
                                 android:textSize="12sp"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
-                                android:text="Track Count"
+                                android:text="@string/store_result_track_count_label"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -177,7 +177,7 @@
                                 android:textSize="12sp"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
-                                android:text="Track Number"
+                                android:text="@string/store_result_track_number_label"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -188,7 +188,7 @@
                                 android:textSize="12sp"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
-                                android:text="Track Time"
+                                android:text="@string/store_result_track_time_label"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -198,7 +198,7 @@
                                 android:textSize="12sp"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
-                                android:text="Country"
+                                android:text="@string/store_result_country_label"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -208,7 +208,7 @@
                                 android:textSize="12sp"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
-                                android:text="Currency"
+                                android:text="@string/store_result_currency_label"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -218,7 +218,7 @@
                                 android:textSize="12sp"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
-                                android:text="Genre"
+                                android:text="@string/store_result_genre_label"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -237,7 +237,7 @@
                                 android:textSize="12sp"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
-                                android:text="Kind"
+                                android:text="@string/store_result_kind_label"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -248,7 +248,7 @@
                                 android:textSize="12sp"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
-                                android:text="Collection Price"
+                                android:text="@string/store_result_collection_price_label"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -259,7 +259,7 @@
                                 android:textSize="12sp"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
-                                android:text="Release Date"
+                                android:text="@string/store_result_release_date_label"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -270,7 +270,7 @@
                                 android:textSize="12sp"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
-                                android:text="Disc Number"
+                                android:text="@string/store_result_disc_number_label"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -281,7 +281,7 @@
                                 android:textSize="12sp"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
-                                android:text="Track Count"
+                                android:text="@string/store_result_track_count_label"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -292,7 +292,7 @@
                                 android:textSize="12sp"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
-                                android:text="Track Number"
+                                android:text="@string/store_result_track_number_label"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -303,7 +303,7 @@
                                 android:textSize="12sp"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
-                                android:text="Track Time"
+                                android:text="@string/store_result_track_time_label"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -314,7 +314,7 @@
                                 android:textSize="12sp"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
-                                android:text="Country"
+                                android:text="@string/store_result_country_label"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -325,7 +325,7 @@
                                 android:textSize="12sp"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
-                                android:text="Currency"
+                                android:text="@string/store_result_currency_label"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -336,7 +336,7 @@
                                 android:textSize="12sp"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
-                                android:text="Genre"
+                                android:text="@string/store_result_genre_label"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 

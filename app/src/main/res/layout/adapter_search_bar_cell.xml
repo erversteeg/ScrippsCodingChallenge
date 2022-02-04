@@ -9,7 +9,7 @@
         android:id="@+id/edit_text_search_input"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:hint="Search iTunes Store"
+        android:hint="@string/search_store_input_hint"
         android:backgroundTint="?attr/colorPrimaryVariant" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

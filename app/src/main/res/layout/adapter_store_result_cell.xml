@@ -41,7 +41,7 @@
                     app:autoSizeMinTextSize="10sp"
                     app:autoSizeMaxTextSize="20sp"
                     app:autoSizeStepGranularity="1sp"
-                    android:text="Track Name" />
+                    android:text="@string/store_result_track_name_label" />
 
                 <TextView
                     android:id="@+id/text_view_collection_name"
@@ -52,7 +52,7 @@
                     app:autoSizeMinTextSize="10sp"
                     app:autoSizeMaxTextSize="16sp"
                     app:autoSizeStepGranularity="1sp"
-                    android:text="Collection Name" />
+                    android:text="@string/store_result_collection_name_label" />
 
                 <TextView
                     android:id="@+id/text_view_artist_name"
@@ -63,7 +63,7 @@
                     app:autoSizeMinTextSize="10sp"
                     app:autoSizeMaxTextSize="16sp"
                     app:autoSizeStepGranularity="1sp"
-                    android:text="Artist Name" />
+                    android:text="@string/store_result_artist_name_label" />
 
             </LinearLayout>
 
