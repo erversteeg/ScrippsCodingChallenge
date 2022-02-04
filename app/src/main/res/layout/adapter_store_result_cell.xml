@@ -14,7 +14,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground">
 
             <ImageView
                 android:id="@+id/image_view_artwork"
@@ -27,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="100dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
                 android:orientation="vertical">
 
@@ -41,6 +42,7 @@
                     app:autoSizeMinTextSize="10sp"
                     app:autoSizeMaxTextSize="20sp"
                     app:autoSizeStepGranularity="1sp"
+                    android:lines="2"
                     android:text="@string/store_result_track_name_label" />
 
                 <TextView
@@ -52,6 +54,7 @@
                     app:autoSizeMinTextSize="10sp"
                     app:autoSizeMaxTextSize="16sp"
                     app:autoSizeStepGranularity="1sp"
+                    android:lines="1"
                     android:text="@string/store_result_collection_name_label" />
 
                 <TextView
@@ -63,6 +66,7 @@
                     app:autoSizeMinTextSize="10sp"
                     app:autoSizeMaxTextSize="16sp"
                     app:autoSizeStepGranularity="1sp"
+                    android:lines="1"
                     android:text="@string/store_result_artist_name_label" />
 
             </LinearLayout>
