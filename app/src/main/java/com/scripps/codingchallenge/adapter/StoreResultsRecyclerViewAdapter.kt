@@ -52,6 +52,7 @@ class StoreResultsRecyclerViewAdapter(private val activity: FragmentActivity): R
             if (it != null) {
                 networkState = NetworkState.ERROR
 
+                // TODO: Add update, change, and other notify methods
                 notifyDataSetChanged()
             }
         }
