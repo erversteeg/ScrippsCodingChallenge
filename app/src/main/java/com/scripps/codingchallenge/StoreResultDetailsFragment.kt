@@ -13,8 +13,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.scripps.codingchallenge.databinding.FragmentStoreResultDetailsBinding
 import com.scripps.codingchallenge.model.StoreResult
+import com.scripps.codingchallenge.viewmodel.StoreResultsViewModel
 import java.text.NumberFormat
-import java.text.SimpleDateFormat
 import java.util.Locale
 
 class StoreResultDetailsFragment : Fragment() {
@@ -96,16 +96,9 @@ class StoreResultDetailsFragment : Fragment() {
             ) else it.toString()
         }
 
-        // true because the result can be null
+        // true because kind can be true, false, or null
         if (storeResult.kind?.contains("movie") == true) {
             binding.textViewKind.text = getString(R.string.store_result_kind_movie)
-
-            // hide track count and number for movie kind
-            binding.textViewTrackCount.visibility = View.GONE
-            binding.textViewTrackCountLabel.visibility = View.GONE
-
-            binding.textViewTrackNumber.visibility = View.GONE
-            binding.textViewTrackNumberLabel.visibility = View.GONE
 
             // rename track time to length
             binding.textViewTrackTimeLabel.text = getString(R.string.track_time_movie_label)
@@ -122,11 +115,7 @@ class StoreResultDetailsFragment : Fragment() {
 
         // release date
         storeResult.releaseDate?.apply {
-            val inputFormat = SimpleDateFormat(getString(R.string.input_date_format), Locale.US)
-            val date = inputFormat.parse(this)!!
-
-            val displayFormat = SimpleDateFormat(getString(R.string.display_date_format), Locale.US)
-            binding.textViewReleaseDate.text = displayFormat.format(date)
+            binding.textViewReleaseDate.text = storeResult.getDisplayReleaseDate()
         }
 
         // disc number
@@ -139,8 +128,8 @@ class StoreResultDetailsFragment : Fragment() {
         }
 
         // track count
-        if (storeResult.trackCount != null) {
-            binding.textViewTrackCount.text = NumberFormat.getInstance(Locale.US).format(storeResult.trackCount)
+        if (storeResult.showTrackCount()) {
+            binding.textViewTrackCount.text = storeResult.getFormattedTrackCount()
         }
         else {
             binding.textViewTrackCount.visibility = View.GONE
@@ -148,7 +137,7 @@ class StoreResultDetailsFragment : Fragment() {
         }
 
         // track number
-        if (storeResult.trackNumber != null) {
+        if (storeResult.showTrackNumber()) {
             binding.textViewTrackNumber.text = storeResult.trackNumber.toString()
         }
         else {
@@ -158,9 +147,8 @@ class StoreResultDetailsFragment : Fragment() {
 
         // track time
         storeResult.trackTimeMillis?.apply {
-            val totalSeconds = this / 1000
-            val minutes = totalSeconds / 60
-            val seconds = totalSeconds % 60
+            val minutes = storeResult.getTrackLengthMinutes()
+            val seconds = storeResult.getTrackLengthSeconds()
 
             binding.textViewTrackTime.text = getString(R.string.track_time_format, minutes, seconds)
         }
