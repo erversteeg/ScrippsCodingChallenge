@@ -8,6 +8,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.scripps.codingchallenge.databinding.FragmentStoreResultDetailsBinding
+import com.scripps.codingchallenge.model.StoreResult
+import java.text.NumberFormat
+import java.text.SimpleDateFormat
+import java.util.Locale
+
 
 class StoreResultDetailsFragment : Fragment() {
 
@@ -38,13 +43,106 @@ class StoreResultDetailsFragment : Fragment() {
         val viewModel = ViewModelProvider(requireActivity()).get(StoreResultsViewModel::class.java)
         val storeResult = viewModel.getStoreResult(storeResultId)!!
 
+        showTopSection(storeResult)
+        showDetailsSection(storeResult)
+    }
+
+    private fun showTopSection(storeResult: StoreResult) {
+        // artwork
         Glide.with(this).load(storeResult.artworkUrl100).into(binding.imageViewArtwork)
 
+        // track name
         binding.textViewTrackName.text = storeResult.trackName
+
+        // collection name
         binding.textViewCollectionName.text = storeResult.collectionName
+
+        // artist name
         binding.textViewArtistName.text = storeResult.artistName
 
+        // track price
         binding.textViewPrice.text = String.format("$%.2f", storeResult.trackPrice)
+    }
+
+    private fun showDetailsSection(storeResult: StoreResult) {
+        // kind
+        binding.textViewKind.text = storeResult.kind?.replaceFirstChar {
+            if (it.isLowerCase()) it.titlecase(
+                Locale.US
+            ) else it.toString()
+        }
+
+        // true because the result can be null
+        if (storeResult.kind?.contains("movie") == true) {
+            binding.textViewKind.text = "Movie"
+        }
+
+        // collection price
+        if (storeResult.collectionPrice != storeResult.trackPrice) {
+            binding.textViewCollectionPrice.text = String.format("$%.2f", storeResult.collectionPrice)
+        }
+        else {
+            binding.textViewCollectionPriceLabel.visibility = View.GONE
+            binding.textViewCollectionPrice.visibility = View.GONE
+        }
+
+        // release date
+        storeResult.releaseDate?.apply {
+            val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US)
+            val date = inputFormat.parse(this)!!
+
+            val displayFormat = SimpleDateFormat("MM/dd/yyyy", Locale.US)
+            binding.textViewReleaseDate.text = displayFormat.format(date)
+        }
+
+        // disc number
+        if (storeResult.discNumber != null) {
+            binding.textViewDiscNumber.text = storeResult.discNumber.toString()
+        }
+        else {
+            binding.textViewDiscNumber.visibility = View.GONE
+            binding.textViewDiscNumberLabel.visibility = View.GONE
+        }
+
+        // track count
+        if (storeResult.trackCount != null) {
+            binding.textViewTrackCount.text = NumberFormat.getInstance(Locale.US).format(storeResult.trackCount)
+        }
+        else {
+            binding.textViewTrackCount.visibility = View.GONE
+            binding.textViewTrackCountLabel.visibility = View.GONE
+        }
+
+        // track number
+        if (storeResult.trackNumber != null) {
+            binding.textViewTrackNumber.text = storeResult.trackNumber.toString()
+        }
+        else {
+            binding.textViewTrackNumber.visibility = View.GONE
+            binding.textViewTrackNumberLabel.visibility = View.GONE
+        }
+
+        // track time
+        storeResult.trackTimeMillis?.apply {
+            val totalSeconds = this / 1000
+            val minutes = totalSeconds / 60
+            val seconds = totalSeconds % 60
+            binding.textViewTrackTime.text = "${minutes}m${seconds}s"
+        }
+
+        if (storeResult.trackTimeMillis == null) {
+            binding.textViewTrackTimeLabel.visibility = View.GONE
+            binding.textViewTrackTime.visibility = View.GONE
+        }
+
+        // country
+        binding.textViewCountry.text = storeResult.country
+
+        // currency
+        binding.textViewCurrency.text = storeResult.currency
+
+        // genre
+        binding.textViewGenre.text = storeResult.primaryGenreName
     }
 
     override fun onResume() {

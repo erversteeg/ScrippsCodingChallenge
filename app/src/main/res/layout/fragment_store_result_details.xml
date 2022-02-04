@@ -1,95 +1,355 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StoreResultDetailsFragment"
-    android:padding="5dp">
+    tools:context=".StoreResultDetailsFragment">
 
-    <androidx.cardview.widget.CardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="2dp"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintTop_toTopOf="parent">
+        android:padding="5dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/image_view_artwork"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="120dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/text_view_track_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="25dp"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:autoSizeTextType="uniform"
-                    app:autoSizeMinTextSize="10sp"
-                    app:autoSizeMaxTextSize="20sp"
-                    app:autoSizeStepGranularity="1sp"
-                    android:text="Track Name" />
-
-                <TextView
-                    android:id="@+id/text_view_collection_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:textSize="14sp"
-                    app:autoSizeTextType="uniform"
-                    app:autoSizeMinTextSize="10sp"
-                    app:autoSizeMaxTextSize="16sp"
-                    app:autoSizeStepGranularity="1sp"
-                    android:text="Collection Name" />
-
-                <TextView
-                    android:id="@+id/text_view_artist_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:textSize="14sp"
-                    app:autoSizeTextType="uniform"
-                    app:autoSizeMinTextSize="10sp"
-                    app:autoSizeMaxTextSize="16sp"
-                    app:autoSizeStepGranularity="1sp"
-                    android:text="Artist Name" />
-
-                <TextView
-                    android:id="@+id/text_view_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="24sp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="end"
-                    android:text="$00.00" />
-
-            </LinearLayout>
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="2dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraint_layout_details_content"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/image_view_artwork">
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/image_view_artwork"
+                    android:layout_width="100dp"
+                    android:layout_height="95dp"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/linear_layout_top_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="120dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/text_view_track_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:autoSizeTextType="uniform"
+                        app:autoSizeMinTextSize="10sp"
+                        app:autoSizeMaxTextSize="20sp"
+                        app:autoSizeStepGranularity="1sp"
+                        android:lines="2"
+                        android:text="Track Name" />
+
+                    <TextView
+                        android:id="@+id/text_view_collection_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:textSize="14sp"
+                        app:autoSizeTextType="uniform"
+                        app:autoSizeMinTextSize="10sp"
+                        app:autoSizeMaxTextSize="16sp"
+                        app:autoSizeStepGranularity="1sp"
+                        android:lines="1"
+                        android:text="Collection Name" />
+
+                    <TextView
+                        android:id="@+id/text_view_artist_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:textSize="14sp"
+                        app:autoSizeTextType="uniform"
+                        app:autoSizeMinTextSize="10sp"
+                        app:autoSizeMaxTextSize="16sp"
+                        app:autoSizeStepGranularity="1sp"
+                        android:lines="1"
+                        android:text="Artist Name" />
+
+                    <TextView
+                        android:id="@+id/text_view_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="24sp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="end"
+                        android:text="$00.00" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#FFEEEEEE"
+                    android:layout_margin="5dp"
+                    app:layout_constraintTop_toBottomOf="@id/linear_layout_top_info" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_layout_details_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/image_view_artwork">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_margin="10dp"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Kind"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/text_view_collection_price_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Collection Price"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Release Date"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/text_view_disc_number_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Disc Number"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/text_view_track_count_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Track Count"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/text_view_track_number_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Track Number"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/text_view_track_time_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Track Time"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Country"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Currency"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Genre"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/text_view_kind"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Kind"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/text_view_collection_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Collection Price"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/text_view_release_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Release Date"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/text_view_disc_number"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Disc Number"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/text_view_track_count"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Track Count"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/text_view_track_number"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Track Number"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/text_view_track_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Track Time"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/text_view_country"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Country"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/text_view_currency"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Currency"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/text_view_genre"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Genre"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
-    </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
