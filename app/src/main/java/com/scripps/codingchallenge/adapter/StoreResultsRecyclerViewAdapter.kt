@@ -15,12 +15,13 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.scripps.codingchallenge.R
-import com.scripps.codingchallenge.StoreResultsViewModel
+import com.scripps.codingchallenge.viewmodel.StoreResultsViewModel
 import com.scripps.codingchallenge.model.StoreResult
 
 class StoreResultsRecyclerViewAdapter(private val activity: FragmentActivity): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val viewModel: StoreResultsViewModel = ViewModelProvider(activity).get(StoreResultsViewModel::class.java)
+    private val viewModel: StoreResultsViewModel = ViewModelProvider(activity).get(
+        StoreResultsViewModel::class.java)
 
     var storeResults = emptyList<StoreResult>()
 
