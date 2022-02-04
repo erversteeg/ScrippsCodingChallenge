@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="@string/search_store_input_hint"
-        android:backgroundTint="?attr/colorPrimaryVariant" />
+        android:backgroundTint="?attr/colorPrimaryVariant"
+        android:inputType="textCapWords" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
