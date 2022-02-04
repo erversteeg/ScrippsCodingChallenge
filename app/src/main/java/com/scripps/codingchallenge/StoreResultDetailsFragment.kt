@@ -94,6 +94,16 @@ class StoreResultDetailsFragment : Fragment() {
         // true because the result can be null
         if (storeResult.kind?.contains("movie") == true) {
             binding.textViewKind.text = getString(R.string.store_result_kind_movie)
+
+            // hide track count and number for movie kind
+            binding.textViewTrackCount.visibility = View.GONE
+            binding.textViewTrackCountLabel.visibility = View.GONE
+
+            binding.textViewTrackNumber.visibility = View.GONE
+            binding.textViewTrackNumberLabel.visibility = View.GONE
+
+            // rename track time to length
+            binding.textViewTrackTimeLabel.text = getString(R.string.track_time_movie_label)
         }
 
         // collection price
