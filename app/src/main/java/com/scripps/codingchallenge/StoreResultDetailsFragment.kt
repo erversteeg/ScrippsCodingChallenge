@@ -80,7 +80,12 @@ class StoreResultDetailsFragment : Fragment() {
         binding.textViewArtistName.text = storeResult.artistName
 
         // track price
-        binding.textViewPrice.text = getString(R.string.price_format, storeResult.trackPrice)
+        if (storeResult.trackPrice != null) {
+            binding.textViewPrice.text = getString(R.string.price_format, storeResult.trackPrice)
+        }
+        else {
+            binding.textViewPrice.visibility = View.INVISIBLE
+        }
     }
 
     private fun showDetailsSection(storeResult: StoreResult) {

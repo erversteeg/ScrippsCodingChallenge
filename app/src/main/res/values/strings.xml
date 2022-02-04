@@ -21,5 +21,6 @@
     <string name="price_format">$%.2f</string>
     <string name="input_date_format">yyyy-MM-dd\'T\'HH:mm:ss\'Z\'</string>
     <string name="display_date_format">MM/dd/yyyy</string>
-    <string name="track_time_format">%dm%ds</string>
+    <string name="track_time_format">%dm %ds</string>
+    <string name="track_time_movie_label">Length</string>
 </resources>
