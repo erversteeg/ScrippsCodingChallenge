@@ -1,5 +1,9 @@
 package com.scripps.codingchallenge
 
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -44,6 +48,22 @@ class StoreResultDetailsFragment : Fragment() {
 
         showTopSection(storeResult)
         showDetailsSection(storeResult)
+
+        if (storeResult.trackViewUrl != null) {
+            binding.constraintLayoutDetailsCardLayout.setOnClickListener {
+                loadUrl(storeResult.trackViewUrl)
+            }
+        }
+        else {
+            if (storeResult.collectionViewUrl != null) {
+                binding.constraintLayoutDetailsCardLayout.setOnClickListener {
+                    loadUrl(storeResult.collectionViewUrl)
+                }
+            }
+            else {
+                binding.constraintLayoutDetailsCardLayout.background = ColorDrawable(Color.TRANSPARENT)
+            }
+        }
     }
 
     private fun showTopSection(storeResult: StoreResult) {
@@ -143,6 +163,11 @@ class StoreResultDetailsFragment : Fragment() {
 
         // genre
         binding.textViewGenre.text = storeResult.primaryGenreName
+    }
+
+    private fun loadUrl(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(intent)
     }
 
     override fun onResume() {

@@ -21,8 +21,10 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_layout_details_card_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground">
 
                 <ImageView
                     android:id="@+id/image_view_artwork"
