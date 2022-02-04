@@ -104,6 +104,11 @@ class StoreResultDetailsFragment : Fragment() {
             binding.textViewTrackTimeLabel.text = getString(R.string.track_time_movie_label)
         }
 
+        if (storeResult.kind == null) {
+            binding.textViewKind.visibility = View.GONE
+            binding.textViewKindLabel.visibility = View.GONE
+        }
+
         // collection price
         if (storeResult.collectionPrice != storeResult.trackPrice) {
             binding.textViewCollectionPrice.text = getString(R.string.price_format, storeResult.collectionPrice)
